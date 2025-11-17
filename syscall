@@ -5,24 +5,30 @@ import time
 import subprocess
 from pathlib import Path
 import sys
-import sys
 import termios
 import tty
+import signal
 
 def masked_input(prompt="Password: "):
-    """Prompt for password, displaying * for each character."""
+    """Prompt for password, displaying * for each character, and allow Ctrl+C."""
     sys.stdout.write(prompt)
     sys.stdout.flush()
     password = ""
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
+
     try:
-        tty.setraw(fd)
+        # Put terminal in cbreak mode (like raw, but Ctrl+C still works)
+        tty.setcbreak(fd)
+
         while True:
             ch = sys.stdin.read(1)
             if ch in ("\n", "\r"):
                 break
-            if ch == "\x7f":  # handle backspace
+            if ch == "\x03":  # Ctrl+C
+                print()
+                raise KeyboardInterrupt
+            elif ch == "\x7f":  # Backspace
                 if len(password) > 0:
                     password = password[:-1]
                     sys.stdout.write("\b \b")
@@ -33,6 +39,7 @@ def masked_input(prompt="Password: "):
                 sys.stdout.flush()
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
     print()
     return password
 

@@ -23,17 +23,17 @@ executes privileged commands safely.
    ```
 - ⏱ **Temporary root access** via privilege cache:
   - Enable root access for a limited time:
-    ```bash
-    syscall --enable <minutes>
-    ```
+  ```bash
+  syscall --enable <minutes>
+  ```
   - Disable the temporary root access manually:
-    ```bash
-    syscall --disable
-    ```
+  ```bash
+  syscall --disable
+  ```
   - Check the current status of the root access cache:
-    ```bash
-    syscall --status
-    ```
+  ```bash
+  syscall --status
+  ```
 
 ## 🚀 Usage
 

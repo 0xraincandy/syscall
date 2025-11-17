@@ -80,7 +80,7 @@ ame ins syscall
 Clone the repository and build the package manually:
 
 ```bash
-git clone https://github.com/YOURNAME/syscall.git
+git clone https://github.com/0xraincandy/syscall.git
 cd syscall
 makepkg -si
 ```

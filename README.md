@@ -25,22 +25,24 @@ executes privileged commands safely.
 
 Run any command as root via syscall:
 
+Update system packages
 ```bash
-# Update system packages
 syscall pacman -Syu
-
-# Restart a system service
+```
+Restart a system service
+```bash
 syscall systemctl restart NetworkManager
+```
 
-# Edit a root-owned file
-syscall nano /etc/hosts
-
+Edit a root-owned file
+```bash
+syscall vim /etc/hosts
+```
 
 ---
 
 ### **Installation from AUR**
 
-```markdown
 ## 📦 Installation
 
 ### From the AUR
@@ -49,13 +51,16 @@ Install directly using an AUR helper like yay or paru:
 
 ```bash
 yay -S syscall
-
-
----
+```
+```bash
+paru -S syscall
+```
+```bash
+ame ins syscall
+```
 
 ### **Manual Installation**
 
-```markdown
 ### Manual Install
 
 Clone the repository and build the package manually:
@@ -64,4 +69,10 @@ Clone the repository and build the package manually:
 git clone https://github.com/YOURNAME/syscall.git
 cd syscall
 makepkg -si
+```
 
+🔒 Authentication Cache
+
+Syscall stores authentication securely using a root-owned state file accessed
+through the setuid helper. Once authenticated, you won’t be prompted again until
+the cache expires.

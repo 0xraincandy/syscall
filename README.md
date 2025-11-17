@@ -47,7 +47,7 @@ syscall vim /etc/hosts
 
 ### From the AUR
 
-Install directly using an AUR helper like yay or paru:
+Install directly using an AUR helper;
 
 ```bash
 yay -S syscall
